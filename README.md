@@ -24,25 +24,25 @@ The output file will be saved as a .csv in the data directory.
 
 The figures correspond to:
 
-Figure 1: see scripts/gaussianplot1.sh
-Figure 2: see the .ipynb notebook
-FIgure 3: see scripts/equiplot1.sh
-Figure 4: see scripts/gaussianplot1.sh
-Figure 5: see scripts/gaussian_nonlinear.sh
-Figure 6: see scripts/robustness.sh
-Figure 7: see scripts/robustness.sh
-Figure 8: see scripts/fx.sh
-Figure 9: see scripts/nongaussian_linear.sh
-Figure 10: see scripts/equiplot3.sh
-Figure 11: see the .ipynb notebook
-Figure 12: see the .ipynb notebook
-Figure 13: see scripts/equiplot2.sh
-Figure 14: see scripts/cicomp.sh
-Figure 15: see the .ipynb notebook
-Figure 16: see scripts/dsliu2020.sh and TODO
-Figure 17: see scripts/dsliu200.sh
-Figure 18: see scripts/ar1corrplot.sh
-Figure 19: see scripts/ar1corrplot.sh
-Figure 20: see scripts/gaussian_nonlinear.sh
-Figure 21: see scripts/gaussian_nonlinear.sh
-Figure 22: see scripts/nongaussian_linear.sh
+- Figure 1: see scripts/gaussianplot1.sh
+- Figure 2: see the .ipynb notebook
+- FIgure 3: see scripts/equiplot1.sh
+- Figure 4: see scripts/gaussianplot1.sh
+- Figure 5: see scripts/gaussian_nonlinear.sh
+- Figure 6: see scripts/robustness.sh
+- Figure 7: see scripts/robustness.sh
+- Figure 8: see scripts/fx.sh
+- Figure 9: see scripts/nongaussian_linear.sh
+- Figure 10: see scripts/equiplot3.sh
+- Figure 11: see the .ipynb notebook
+- Figure 12: see the .ipynb notebook
+- Figure 13: see scripts/equiplot2.sh
+- Figure 14: see scripts/cicomp.sh
+- Figure 15: see the .ipynb notebook
+- Figure 16: see scripts/dsliu2020.sh and xing2019rep.R
+- Figure 17: see scripts/dsliu2020.sh
+- Figure 18: see scripts/ar1corrplot.sh
+- Figure 19: see scripts/ar1corrplot.sh
+- Figure 20: see scripts/gaussian_nonlinear.sh
+- Figure 21: see scripts/gaussian_nonlinear.sh
+- Figure 22: see scripts/nongaussian_linear.sh
