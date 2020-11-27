@@ -6,6 +6,7 @@ transfer.sh
 # Don't save data
 transfer/*
 data/*
+scripts/data/*
 figures/*
 *.ipynb
 
