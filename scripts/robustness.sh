@@ -41,7 +41,7 @@ python3 ../mrcrep.py $EQUI_ARGS
 AR1_ARGS="${COMMON_ARGS}
 	--method_dgp [ar1]
 	--a_dgp [3]
-	--coeff_size_dgp 1
+	--coeff_size_dgp 0.5
 	--corr_signals_dgp [True,False]
 	--shrinkage_filter [none,graphicallasso,ledoitwolf]
 	--description Lasso on AR1 with p500, linear cond_mean, but infer Cov matrix, low coeff size
@@ -54,7 +54,7 @@ ER_ARGS="${COMMON_ARGS}
 	--p_dgp 500
 	--method_dgp [ver,qer]
 	--delta_dgp [0.2]
-	--coeff_size_dgp 0.5
+	--coeff_size_dgp 1
 	--shrinkage_filter [none,graphicallasso,ledoitwolf]
 	--description Lasso on ER/VER with p500, linear cond_mean, but infer Cov matrix, low coeff size
 "

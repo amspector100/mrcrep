@@ -62,7 +62,7 @@ GIBBS_GRID_ARGS="
 	--coeff_size_dgp 0.4
 	--coeff_dist_dgp uniform
 	--n_sample [350,500,750,1000]
-	--ksampler_filter [gaussian,gibbs_graph]
+	--ksampler_filter [gibbs_grid,gaussian]
 	--resample_beta True
 	--resample_sigma False
 	--description Linear statistics on gibbs grid, linear cond mean

@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Set to > 512 to replicate
-NREPS=1
+NREPS=35
 NPROCESSES=1
 
 ARGS_EQUI="
@@ -23,6 +23,7 @@ ARGS_EQUI="
 	--description CICOMP1: Lasso,Ridge on Block equicorr with p500
 "
 
+# Block-equicorrelated panel
 python3 ../mrcrep.py $ARGS_EQUI
 
 ARGS_ER="
@@ -35,12 +36,12 @@ ARGS_ER="
 	--seed_start 0
 	--num_processes $NPROCESSES
 	--reps $NREPS
-	--n_dgp 375
+	--n_dgp 333
 	--coeff_size_dgp [1]
-	--coeff_dist_dgp none
+	--coeff_dist_dgp uniform
 	--comp_ci True
 	--description Lasso,Ridge on VER with p500
 "
 
-# ErdosRenyi
+# ErdosRenyi (cov)
 python3 ../mrcrep.py $ARGS_ER

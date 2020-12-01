@@ -4,6 +4,7 @@
 NREPS=1
 NPROCESSES=1
 
+# -- Low dimensional case
 LOW_DIM_ARGS="
 	--p_dgp 500
 	--n_dgp 500
@@ -21,17 +22,16 @@ LOW_DIM_ARGS="
 	--reps $NREPS 
 	--coeff_dist_sample dsliu2020 
 	--resample_beta True
-	--description DSLIU2020 REPLICATION p500
+	--description low-dimensional case
 "
 
-# -- Low dimensional case
 python3 ../mrcrep.py $LOW_DIM_ARGS
 
 HIGH_DIM_ARGS="
 	--p_dgp 2000
 	--n_dgp 500
 	--n_sample 500
-	--method_dgp [daibarber2016]
+	--method_dgp [blockequi]
 	--rho_dgp [0,0.8] 
 	--gamma_dgp 1
 	--fstat_filter lasso
@@ -44,7 +44,7 @@ HIGH_DIM_ARGS="
 	--reps $NPROCESSES
 	--coeff_dist_sample dsliu2020 
 	--resample_beta True 
-	--description DSLIU2020 REPLICATION p2000
+	--description high-dimensional case
 "
 
 python3 ../mrcrep.py $HIGH_DIM_ARGS

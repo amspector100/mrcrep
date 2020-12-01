@@ -14,6 +14,7 @@ COMMON_ARGS="
 	--num_processes $NPROCESSES 
 	--reps $NREPS
 	--coeff_dist_dgp uniform
+	--n_dgp [125,250,333,500,1000]
 "
 EQUI_ARGS="${COMMON_ARGS}
 	--method_dgp [blockequi]
@@ -36,6 +37,7 @@ AR1_ARGS="${COMMON_ARGS}
 	--method_dgp [ar1]
 	--a_dgp [3]
 	--coeff_size_dgp 2
+	--corr_signals_dgp [True,False]
 	--description AR1 gaussian plots
 "
 python3 ../mrcrep.py $AR1_ARGS

@@ -37,7 +37,7 @@ AR1_ARGS="
 	--zstat_fstat lars_path
 	--num_processes $NPROCESSES
 	--reps $NREPS
-	--coeff_size_dgp 0.25
+	--coeff_size_dgp 0.45
 	--coeff_dist_dgp uniform
 	--corr_signals_dgp [True,False]
 	--n_sample [1005,1250,1500,1750,2000]
@@ -78,7 +78,7 @@ QER_ARGS="
 	--zstat_fstat lars_path
 	--num_processes $NPROCESSES
 	--reps $NREPS
-	--coeff_size_dgp 0.1
+	--coeff_size_dgp 0.25
 	--coeff_dist_dgp uniform
 	--n_sample [1005,1250,1500,1750,2000]
 	--ksampler_filter fx

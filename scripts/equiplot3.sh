@@ -20,8 +20,7 @@ ARGS="
 	--reps $NREPS
 	--use_lars_fstat True
 	--coeff_size_dgp 5
-	--coeff_dist_dgp none
-	--iid_signs_dgp False
+	--coeff_dist_dgp uniform
 	--description Q conjecture for equicorrelated graph, vary q, sign_prob
 "
 python3 ../mrcrep.py $ARGS
