@@ -1,6 +1,6 @@
 #!/bin/bash
 
-Set nreps=256
+#Set nreps=256
 NREPS=1
 NPROCESSES=1
 
