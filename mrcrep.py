@@ -4,6 +4,11 @@ import time
 import datetime
 
 # Ensure we are using the right version of knockpy
+file_directory = os.path.dirname(os.path.abspath(__file__))
+parent_directory = os.path.split(file_directory)[0]
+sys.path.insert(0, os.path.abspath(parent_directory + '/knockpy'))
+
+# Ensure we are using the right version of knockpy
 import knockpy
 print(f"Using version {knockpy.__version__} of knockpy")
 from knockpy import knockoff_stats as kstats
@@ -223,6 +228,7 @@ def single_dataset_power_fdr(
     seed,
     Sigma,
     beta,
+    cutoff,
     groups,
     normalize=True,
     sample_kwargs={},
@@ -247,9 +253,6 @@ def single_dataset_power_fdr(
         p = Sigma.shape[0]
     else:
         p = sample_kwargs['p']
-    if groups is None:
-        groups = np.arange(1, p+1, 1)
-
 
     # If DGP parameters are previously generated, 
     # add them in here. The gibbs_graph parameter
@@ -270,9 +273,14 @@ def single_dataset_power_fdr(
     beta = dgprocess.beta
     Sigma = dgprocess.Sigma
 
+    # Create groups, almost always trivial groupsin our experiments
+    if groups is None:
+        if cutoff==1:
+            groups = np.arange(1, p + 1)
+        else:
+            groups = knockpy.dgp.create_grouping(Sigma, cutoff=cutoff)
 
-    # Parse nonnulls (this allows for group knockoffs, although
-    # we do not actually use this in our experiments)
+    # Parse nonnulls 
     group_nonnulls = knockpy.utilities.fetch_group_nonnulls(
         beta, groups
     )
@@ -408,6 +416,7 @@ def calc_power_and_fdr(
     time0,
     Sigma,
     beta,
+    cutoff=1,
     groups=None,
     q=0.2,
     reps=100,
@@ -428,6 +437,7 @@ def calc_power_and_fdr(
         constant_inputs={
             'Sigma':Sigma,
             'beta':beta,
+            'cutoff':cutoff,
             'groups':groups,
             'sample_kwargs':sample_kwargs,
             'filter_kwargs':filter_kwargs,
@@ -450,7 +460,7 @@ def compare_S_methods(
     Sigma,
     beta,
     dgp_number,
-    groups=None,
+    cutoff=1,
     sample_kwargs={},
     filter_kwargs={},
     fstat_kwargs={},
@@ -489,8 +499,6 @@ def compare_S_methods(
 
     # Helpful for logging
     MAXIMUM_N = max(sample_kwargs['n']) 
-    if groups is None:
-        groups = np.arange(1, p+1, 1)
 
     # Construct/iterate cartesian product of sample, filter, fstat kwargs
     sample_keys, sample_product = dict2keyproduct(sample_kwargs)
@@ -524,6 +532,10 @@ def compare_S_methods(
     # Possibly save S-matrices
     if ground_truth and MX_flag and Sigma is not None:
         print(f"Storing SDP/MRC results")
+        if cutoff != 1:
+            groups = knockpy.dgp.create_grouping(Sigma, cutoff=cutoff)
+        else:
+            groups = np.arange(1, p + 1)
         S_matrices = fetch_competitor_S(
             Sigma=Sigma,
             groups=groups,
@@ -534,6 +546,7 @@ def compare_S_methods(
     else:
         print(f"Not storing SDP/MVR results")
         S_matrices = {method:None for method in S_METHODS}
+        groups = None
 
     ### Calculate power of knockoffs for the different methods
     for filter_vals in filter_product:
@@ -587,6 +600,7 @@ def compare_S_methods(
                 out = calc_power_and_fdr(
                     Sigma=Sigma,
                     beta=beta,
+                    cutoff=cutoff,
                     groups=groups,
                     reps=reps,
                     num_processes=num_processes,
@@ -642,7 +656,7 @@ def parse_args(args):
     # Initialize kwargs constructor
     special_keys = [
         'reps', 'num_processes', 'seed_start', 'description',
-        's_curve', 'resample_beta', 'resample_sigma', 'comp_ci'
+        's_curve', 'resample_beta', 'resample_sigma', 'comp_ci',
     ]
     key_types = ['dgp', 'sample', 'filter', 'fstat']
     all_kwargs = {ktype:{} for ktype in key_types}
@@ -894,6 +908,7 @@ def main(args):
         dgp_vals = list(dgp_vals)
         new_dgp_kwargs = {key:val for key,val in zip(dgp_keys, dgp_vals)}
         print(f"DGP kwargs are now: {new_dgp_kwargs}")
+        cutoff = new_dgp_kwargs.pop("cutoff", 1)
         np.random.seed(110)
         dgprocess = knockpy.dgp.DGP()
         _, _, beta, invSigma, Sigma = dgprocess.sample_data(
@@ -932,7 +947,7 @@ def main(args):
             Sigma=Sigma if not resample_sigma else None,
             beta = beta if not resample_beta else None,
             dgp_number=dgp_number,
-            groups=None,
+            cutoff=cutoff,
             sample_kwargs=sample_kwargs,
             filter_kwargs=filter_kwargs,
             fstat_kwargs=fstat_kwargs,
@@ -942,6 +957,7 @@ def main(args):
             time0=time0,
             S_curve=S_curve,
         )
+        new_dgp_kwargs['cutoff'] = cutoff # put this back for logging
         for key in dgp_keys:
             if key in sample_kwargs:
                 continue
