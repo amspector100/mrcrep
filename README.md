@@ -1,6 +1,6 @@
 ## MRC Replications
 
-This repository contains all the codes to replicate the experiments from https://arxiv.org/abs/2011.14625. Running these scripts requires a python environment with ``knockpy`` installed: please see https://github.com/amspector100/knockpy for installation. These scripts run correctly with knockpy=1.0.2. A few figures were generated using the attached .ipynb notebook instead.
+This repository contains all the codes to replicate the experiments from https://arxiv.org/abs/2011.14625. Running these scripts requires a python environment with ``knockpy`` installed: please see https://github.com/amspector100/knockpy for installation. These scripts run correctly with knockpy=1.0.2, with a few exceptions noted. A few figures were generated using the attached .ipynb notebook instead.
 
 ### Overview
 
@@ -32,19 +32,22 @@ The figures correspond to:
 - Figure 6: see scripts/robustness.sh
 - Figure 7: see scripts/robustness.sh
 - Figure 8: see scripts/fx.sh
-- Figure 9: see scripts/nongaussian_linear.sh
-- Figure 10: see scripts/equiplot3.sh
-- Figure 11: see the .ipynb notebook
+- Figure 9: see scripts/groupings.sh [use v.1.1.0]
+- Figure 10: see scripts/nongaussian_linear.sh
+- Figure 11: see scripts/equiplot3.sh
 - Figure 12: see the .ipynb notebook
-- Figure 13: see scripts/equiplot2.sh
-- Figure 14: see scripts/cicomp.sh
-- Figure 15: see the .ipynb notebook
-- Figure 16: see scripts/replications.sh and xing2019rep.R
-- Figure 17: see scripts/replications.sh
-- Figure 18: see scripts/ar1corrplot.sh
-- Figure 19: see scripts/ar1corrplot.sh
-- Figure 20: see scripts/gaussian_nonlinear.sh
-- Figure 21: see scripts/gaussian_nonlinear.sh
-- Figure 22: see scripts/nongaussian_linear.sh
+- Figure 13: see the .ipynb notebook
+- Figure 14: run python3.9 comptime.py [use v1.1.0]
+- Figure 15: see scripts/equiplot2.sh
+- Figure 16: see scripts/cicomp.sh
+- Figure 17: see the .ipynb notebook
+- Figure 18: see scripts/replications.sh and xing2019rep.R
+- Figure 19: see scripts/replications.sh
+- Figure 20: see scripts/ar1corrplot.sh
+- Figure 21: see scripts/ar1corrplot.sh
+- Figure 22: see scripts/maxcorrar1.sh [use v1.1.0]
+- Figure 23: see scripts/gaussian_nonlinear.sh
+- Figure 24: see scripts/gaussian_nonlinear.sh
+- Figure 25: see scripts/nongaussian_linear.sh
 
 Run the scripts from inside the scripts directory. A data directory will be generated inside the scripts directory.
